@@ -1,0 +1,145 @@
+<div class="col-md-6 offset-md-3">
+	<div class="jumbotron jumbotron-fluid">
+		<div class="form-group" align="center" style="margin-top: 50px;" [ngStyle]="displaypersonaldata">
+			<form [formGroup]="fresherPersonalFormGroup">
+				<div class="form-group">
+					<h1><b>Freshers</b></h1>
+          <h3><b>Personal</b></h3>
+				</div>
+				<div class="form-group">
+
+					<input type="text" class="form-control" placeholder="Full Name" formControlName="name">
+					<span class="text-danger" *ngIf="fresherPersonalFormGroup.controls.name.invalid && fresherPersonalFormGroup.controls.name.touched">Name is Required</span>
+				</div>
+				<div class="form-group">
+
+					<input type="text" class="form-control" placeholder="Enter Email Id" formControlName="emailId">
+					<span class="text-danger" *ngIf="fresherPersonalFormGroup.controls.emailId.invalid && fresherPersonalFormGroup.controls.emailId.touched">Enter Valid Email Id</span>
+				</div>
+				<div class="form-group">
+
+					<input type="password" class="form-control" placeholder="Password" formControlName="password">
+					<span class="text-danger" *ngIf="fresherPersonalFormGroup.controls.password.invalid && fresherPersonalFormGroup.controls.password.touched">Password Required</span>
+				</div>
+				<div class="form-group">
+
+					<input type="tel" class="form-control" placeholder="Mobile Number" formControlName="mobileNumber">
+					<span class="text-danger" *ngIf="fresherPersonalFormGroup.controls.mobileNumber.invalid && fresherPersonalFormGroup.controls.mobileNumber.touched">Enter valid Mobile Number</span>
+				</div>
+				<div class="form-group">
+
+					<select formControlName="currentLocation" class="form-control">
+                <option selected="true" disabled="disabled">-- Please select the city --</option>
+                <option>Gwalior</option>
+                <option>Bhopal</option>
+                <option>Indore</option>
+                <option>Pune</option>
+                <option>Banglore</option>
+            </select>
+					<span class="text-danger" *ngIf="fresherPersonalFormGroup.controls.currentLocation.invalid && fresherPersonalFormGroup.controls.currentLocation.touched">Please specify your city</span>
+				</div>
+				<div class="form-group">
+					<input type="file" class="form-control" formControlName="resume" placeholder="upload resume" >
+        </div>
+					<div class="form-group">
+						<button class="btn btn-primary" (click)="onRegister()" [disabled]="!fresherPersonalFormGroup.valid">Register</button>
+					</div>
+			</form>
+		</div>
+	
+
+
+<div class="form-group" align="center" [ngStyle]="displayeducationdata">
+	
+			<form [formGroup]="fresherEducationFormGroup">
+        
+				<div class="form-group">
+					<h1><b>Freshers</b></h1>
+          <h3><b>Education</b></h3>
+				</div>
+				<div class="form-group col-md-20">
+
+					<select formControlName="qualification" class="form-control">
+                <option disabled="" selected="">-- Select your  Higest Qualification --</option>
+                <option>Doctor/PhD</option>
+                <option>Masters/Post-Graduation</option>
+                <option>Graduation/Diploma</option>
+                <option>12th</option>
+                <option>10th</option>
+                <option>Below 10th</option>
+            </select>
+					<span class="text-danger" *ngIf="fresherEducationFormGroup.controls.qualification.invalid && fresherEducationFormGroup.controls.qualification.touched">Please specify your Highest Qualification</span>
+				</div>
+				<div class="form-group col-md-20">
+
+					<input type="text" class="form-control" placeholder="Enter Course" formControlName="course">
+					<span class="text-danger" *ngIf="fresherEducationFormGroup.controls.course.invalid && fresherEducationFormGroup.controls.course.touched">Course is Required</span>
+				</div>
+				<div class="form-group col-md-20">
+
+					<input type="text" class="form-control" placeholder="Enter your Specialization" formControlName="specialization">
+					<span class="text-danger" *ngIf="fresherEducationFormGroup.controls.specialization.invalid && fresherEducationFormGroup.controls.specialization.touched">This Field is Required</span>
+				</div>
+				<div class="form-group col-md-20">
+
+					<input type="text" class="form-control" placeholder="Enter your Collage Name" formControlName="college">
+					<span class="text-danger" *ngIf="fresherEducationFormGroup.controls.college.invalid && fresherEducationFormGroup.controls.college.touched">College Name is Required</span>
+				</div>
+				<div class="form-group col-md-20">
+
+					<select formControlName="courseType" class="form-control">
+                <option disabled="" selected="">-- Select Course Type --</option>
+                <option>Full Time</option>
+                <option>Part Time</option>
+                <option>Correspondence</option>
+            </select>
+					<span class="text-danger" *ngIf="fresherEducationFormGroup.controls.courseType.invalid && fresherEducationFormGroup.controls.courseType.touched">Please specify your Course Type</span>
+				</div>
+				<div class="form-group col-md-20">
+
+					<select formControlName="passingYear" class="form-control">
+                <option disabled="" selected="">-- Select your  Passing Year --</option>
+                <option>2020</option>
+                <option>2019</option>
+                <option>2018</option>
+                <option>2017</option>
+                <option>2016</option>
+                <option>2015</option>
+                <option>2014</option>
+                <option>2013</option>
+                <option>2012</option>
+                <option>2010</option>
+                <option>2009</option>
+                <option>2008</option>
+                <option>2007</option>
+                <option>2006</option>
+                <option>2005</option>
+            </select>
+					<span class="text-danger" *ngIf="fresherEducationFormGroup.controls.passingYear.invalid && fresherEducationFormGroup.controls.passingYear.touched">Please specify your Passing Year</span>
+				</div>
+
+        <div class="form-row" style="margin-top: 1em;">
+				<div class="col">
+					<div class="md-form">
+						<input type="button" class="form-control" class="btn btn-info" (click)="addSkill()" value="addSkill">
+          </div>
+					</div>
+				</div>
+        <div formArrayName="skills"
+					*ngFor="let skill of fresherEducationFormGroup.controls.skills?.value; let i=index">
+					<div [formGroupName]="i">
+						<input class="form-control" formControlName="skillName" placeholder="Add New Skill Name"><br>
+        </div>
+					</div>
+
+				<div class="form-group ">
+
+					<button class="btn btn-primary" (click)="onContinue()" [disabled]="!fresherEducationFormGroup.valid">Continue</button>
+				</div>
+			
+	
+  </form>
+</div>
+</div>
+</div>
+

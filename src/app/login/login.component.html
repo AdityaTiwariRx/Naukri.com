@@ -1,0 +1,31 @@
+<div class="col-md-6 offset-md-3">
+	<div class="jumbotron jumbotron-fluid">
+
+		<h2 align="center"><b>Login</b></h2>
+	
+	<div class="form-group" style="margin-top: 100px;">
+		<form [formGroup]="userFormGroup">
+			<div class="form-group">
+			</div>
+			<div></div>
+			<div class="form-group">
+				<label><b>Email Id</b></label><br>
+				<input type="text" class="form-control col-md-12" placeholder="EmailId/Username" formControlName="emailId">
+				<span class="form-text text-danger" *ngIf="userFormGroup.controls.emailId.invalid && userFormGroup.controls.emailId.touched">Email Required</span>
+			</div>
+			<div class="form-group">
+				<label><b>Password</b></label><br>
+				<input type="password" class="form-control col-md-12" placeholder="Password" formControlName="password">
+				<span class="form-text text-danger" *ngIf="userFormGroup.controls.password.invalid && userFormGroup.controls.password.touched">Password Required</span>
+			</div>
+			<div align="center">
+				<button class="btn btn-primary" (click)="onLogin()"  [disabled]="!userFormGroup.valid">Login</button>
+			</div><br>
+			<div align="center">
+				Not a member as yet ? <a routerLink="/register">Register Now</a>
+			</div>
+
+		</form>
+	</div>
+</div>
+</div>
